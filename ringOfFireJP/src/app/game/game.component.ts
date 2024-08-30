@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class GameComponent {
   takeCardAnimation = false;
+  
 
 
 constructor(){}

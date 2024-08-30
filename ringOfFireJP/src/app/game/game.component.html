@@ -7,12 +7,20 @@
       alt=""
       [ngStyle]="{ 'right.px': i * 5 }"
     />
+
     <img
       (click)="takeCard()"
-      [class.take-card]="takeCardAnimation"
-      class="top-card"
       style="right: 25px"
       src="./assets/img/cards/card_cover.png"
+      alt=""
+    />
+
+    <img
+      (click)="takeCard()"
+      *ngIf="takeCardAnimation"
+      class="take-card"
+      style="right: 25px"
+      src="./assets/img/cards/clubs_1.png"
       alt=""
     />
   </div>
