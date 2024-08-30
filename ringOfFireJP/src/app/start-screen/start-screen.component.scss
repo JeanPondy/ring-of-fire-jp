@@ -1,14 +1,39 @@
 .start-screen {
     background-image: url("./../../assets/img/profile/fire.jpg");
     background-size: cover;   
-/* background-color: #404040; */
-width: 100vw;
-height: 100vh;
-max-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-img {
+    /* background-color: #404040; */
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
     height: 90vh;
+    }
 }
+
+.start-label-box {
+   
+    position: absolute; // über alle bilder
+    left: 0;
+    right: 0;
+    bottom: 140px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+       width: 32vw;
+       height: 16vh;
+       border-radius: 50%;
+
+       &:hover {
+        filter:brightness(1.3);
+        cursor: pointer;
+       }
+    }
 }
