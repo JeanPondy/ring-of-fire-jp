@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Game } from '../../models/game';
+
 
 @Component({
   selector: 'app-game',
@@ -10,10 +12,20 @@ import { CommonModule } from '@angular/common';
 })
 export class GameComponent {
   takeCardAnimation = false;
-  
+  game: Game;
 
 
-constructor(){}
+constructor(){
+  this.game = new Game(); // Initialisierung des Spiels im Konstruktor
+}
+
+ngOnInit(): void{
+  this.newGame()
+}
+newGame(){
+this.game = new Game();
+console.log(this.game)
+}
 
 
 takeCard(){
