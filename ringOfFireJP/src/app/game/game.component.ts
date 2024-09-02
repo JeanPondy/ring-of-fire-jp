@@ -57,8 +57,8 @@ takeCard() {
 openDialog() {
   const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
+  dialogRef.afterClosed().subscribe((name: string) => {
+   this.game.players.push(name);
   });
 }
 }
