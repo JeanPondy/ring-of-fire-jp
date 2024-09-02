@@ -31,6 +31,8 @@ import {
 export class DialogAddPlayerComponent {
   name: string = '';
 
+  // onNoClick()
+
   constructor(public dialogRef:  MatDialogRef<DialogAddPlayerComponent>){}
 
 
