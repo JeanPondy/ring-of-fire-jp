@@ -1,9 +1,13 @@
-<mat-card appearance="outlined">
-  <mat-card-title class="title">Title</mat-card-title>
-  <mat-card-content
-    >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint nulla
-    impedit, ratione voluptates minima blanditiis vel quaerat ex cumque, minus
-    aliquam culpa maxime. Qui, totam. Accusantium aliquid nulla minima
-    iusto?</mat-card-content
-  >
+<mat-card appearance="outlined" class="design">
+  <mat-card-title class="title">
+    {{ card ? title : "Please pick a card" }}
+  </mat-card-title>
+
+  <mat-card-content>
+    {{
+      card
+        ? description
+        : "Please click on the card stack to select the next card"
+    }}
+  </mat-card-content>
 </mat-card>
