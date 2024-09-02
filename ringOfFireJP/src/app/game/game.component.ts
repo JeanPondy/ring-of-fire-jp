@@ -46,6 +46,11 @@ takeCard() {
   console.log('New card:' + this.currentCard);
   console.log('Game is', this.game);
 
+
+ 
+    /* Nächsten Spieler auswählen Dank Modulo*/
+    this.game.currentPlayer++;
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
   
 /* die Animation nach 1500s wiederholen */
   setTimeout(()  => {
