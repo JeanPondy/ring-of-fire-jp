@@ -64,11 +64,12 @@ export class GameComponent implements OnInit {
 
       console.log('New card: ' + this.game.currentCard);
       console.log('Game is', this.game);
-      this.saveGames();
-
+     
       // Nächsten Spieler auswählen dank Modulo
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+
+      this.saveGames();
 
       // Die Animation nach 1000 ms wiederholen
       setTimeout(() => {
