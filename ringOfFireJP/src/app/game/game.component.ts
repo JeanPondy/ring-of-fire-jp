@@ -52,15 +52,7 @@ export class GameComponent implements OnInit {
     this.game = new Game();
 
     // Anmerkung: Der Aufruf der addDoc-Methode wurde auskommentiert, hier ist der Code unverändert
-    // const gamesCollection = collection(this.firestore, 'games');
-
-    // addDoc(gamesCollection, this.game.toJson())
-    //   .then(() => {
-    //     console.log('New game document added successfully!');
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error adding new game document: ', error);
-    //   });
+   
   }
 
   takeCard() {
