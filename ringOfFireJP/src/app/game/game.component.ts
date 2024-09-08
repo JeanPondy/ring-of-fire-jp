@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
@@ -7,8 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from '../game-info/game-info.component';
-import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, collectionData, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -17,35 +18,49 @@ import { Observable } from 'rxjs';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'], // korrigiert von styleUrl zu styleUrls
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
   takeCardAnimation = false;
   currentCard: string = '';
   game: Game;
 
-  constructor(private firestore: Firestore = inject(Firestore), public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, private firestore: Firestore = inject(Firestore), public dialog: MatDialog) {
     this.game = new Game(); // Initialisierung des Spiels im Konstruktor
   }
 
   ngOnInit(): void {
     this.newGame();
-    const gamesCollection = collection(this.firestore, 'games'); // Sammlung wird referenziert
-    collectionData(gamesCollection ).subscribe((game) => {
-      console.log('Game update', game);
+
+    // Abonniert die Parameter aus der Route
+    this.route.params.subscribe((params) => {
+      console.log(params['id']); // Greift auf den 'id'-Parameter zu
+
+      // Verweise auf das spezifische Dokument basierend auf der ID aus den Parametern
+      const gameDocRef = doc(this.firestore, `games/${params['id']}`);
+
+      // Hole die Daten des spezifischen Spiels und abonniere Änderungen
+      docData(gameDocRef).subscribe((game:any) => {
+        console.log('Game update', game);
+        this.game.currentPlayer = game.currentPlayer;
+        this.game.playedCards = game.playedCards;
+        this.game.players = game.players;
+        this.game.stack = game.stack;
+      });
     });
   }
 
   newGame() {
     this.game = new Game();
-   
-    const gamesCollection = collection(this.firestore, 'games'); // Correctly reference the 'games' collection
 
-    addDoc(gamesCollection, this.game.toJson()) // Use addDoc to add data to Firestore
-      .then(() => {
-        console.log('New game document added successfully!');
-      })
-      .catch((error) => {
-        console.error('Error adding new game document: ', error);
-      });
+    // Anmerkung: Der Aufruf der addDoc-Methode wurde auskommentiert, hier ist der Code unverändert
+    // const gamesCollection = collection(this.firestore, 'games');
+
+    // addDoc(gamesCollection, this.game.toJson())
+    //   .then(() => {
+    //     console.log('New game document added successfully!');
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error adding new game document: ', error);
+    //   });
   }
 
   takeCard() {
