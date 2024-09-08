@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from '../game-info/game-info.component';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -36,7 +36,16 @@ export class GameComponent {
 
   newGame() {
     this.game = new Game();
-    console.log(this.game);
+   
+    const gamesCollection = collection(this.firestore, 'games'); // Correctly reference the 'games' collection
+
+    addDoc(gamesCollection, { hello: 'Pondys' }) // Use addDoc to add data to Firestore
+      .then(() => {
+        console.log('New game document added successfully!');
+      })
+      .catch((error) => {
+        console.error('Error adding new game document: ', error);
+      });
   }
 
   takeCard() {
