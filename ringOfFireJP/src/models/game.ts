@@ -3,6 +3,8 @@ export class Game {
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
+    public takeCardAnimation = false;
+    public currentCard: string = '';
   
     constructor() {
       for (let i = 1; i <= 13; i++) { // Korrigiert, um auch die 13 einzuschließen
@@ -19,7 +21,9 @@ export class Game {
         players: this.players,
         stack: this.stack,
         playedCards: this.playedCards,
-        currentPlayer: this.currentPlayer
+        currentPlayer: this.currentPlayer,
+        takeCardAnimation: this.takeCardAnimation,
+        currentCard: this.currentCard
       };
     }
   

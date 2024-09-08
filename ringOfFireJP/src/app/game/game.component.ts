@@ -19,8 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game.component.scss'], // korrigiert von styleUrl zu styleUrls
 })
 export class GameComponent implements OnInit {
-  takeCardAnimation = false;
-  currentCard: string = '';
+ 
   game: Game;
   gameId!: string;
 
@@ -46,9 +45,12 @@ export class GameComponent implements OnInit {
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
         this.game.stack = game.stack;
+        this.game.takeCardAnimation = game.takeCardAnimation;
+        this.game.currentCard = game.currentCard;
       });
     });
   }
+ 
 
   newGame() {
     this.game = new Game();
@@ -56,11 +58,11 @@ export class GameComponent implements OnInit {
   }
   takeCard() {
     // Nur wenn takeCardAnimation false ist, wird alles ausgeführt
-    if (!this.takeCardAnimation) {
-      this.currentCard = this.game.stack.pop()!;
-      this.takeCardAnimation = true;
+    if (!this.game.takeCardAnimation) {
+      this.game.currentCard = this.game.stack.pop()!;
+      this.game.takeCardAnimation = true;
 
-      console.log('New card: ' + this.currentCard);
+      console.log('New card: ' + this.game.currentCard);
       console.log('Game is', this.game);
       this.saveGames();
 
@@ -70,8 +72,8 @@ export class GameComponent implements OnInit {
 
       // Die Animation nach 1000 ms wiederholen
       setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
-        this.takeCardAnimation = false;
+        this.game.playedCards.push(this.game.currentCard);
+        this.game.takeCardAnimation = false;
         this.saveGames(); // Speichern des Spiels nach der Aktion
         this.saveGames();
       }, 1000);
