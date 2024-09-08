@@ -39,7 +39,7 @@ export class GameComponent {
    
     const gamesCollection = collection(this.firestore, 'games'); // Correctly reference the 'games' collection
 
-    addDoc(gamesCollection, { hello: 'Pondys' }) // Use addDoc to add data to Firestore
+    addDoc(gamesCollection, this.game.toJson()) // Use addDoc to add data to Firestore
       .then(() => {
         console.log('New game document added successfully!');
       })

@@ -12,6 +12,7 @@ import { Firestore } from '@angular/fire/firestore';
 })
 export class AppComponent {
   firestore: Firestore = inject(Firestore);
+  title = 'ringOfFireJP'; // Füge diese Zeile hinzu
 
   constructor() {
     console.log('Firestore instance:', this.firestore);

@@ -13,6 +13,15 @@ export class Game {
       }
       this.shuffle(this.stack); // Die shuffle-Methode aufrufen
     }
+
+    public toJson(){
+      return {
+        players: this.players,
+        stack: this.stack,
+        playedCards: this.playedCards,
+        currentPlayer: this.currentPlayer
+      };
+    }
   
     // Methode zum Mischen des Arrays
     private shuffle(array: string[]): void {
