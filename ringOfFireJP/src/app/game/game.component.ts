@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
+import { PlayerMobileComponent } from '../player-mobile/player-mobile.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -14,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, MatButtonModule, MatDialogModule, MatIconModule, GameInfoComponent],
+  imports: [CommonModule, PlayerComponent, PlayerMobileComponent, MatButtonModule, MatDialogModule, MatIconModule, GameInfoComponent],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'], // korrigiert von styleUrl zu styleUrls
 })
