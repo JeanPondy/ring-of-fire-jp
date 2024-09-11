@@ -24,6 +24,7 @@ export class GameComponent implements OnInit {
  
   game: Game;
   gameId!: string;
+  gameOver = false;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore = inject(Firestore), public dialog: MatDialog) {
     this.game = new Game(); // Initialisierung des Spiels im Konstruktor
@@ -60,8 +61,10 @@ export class GameComponent implements OnInit {
     // Anmerkung: Der Aufruf der addDoc-Methode wurde auskommentiert, hier ist der Code unverändert
   }
   takeCard() {
-    // Nur wenn takeCardAnimation false ist, wird alles ausgeführt
-    if (!this.game.takeCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+       // Nur wenn takeCardAnimation false ist, wird alles ausgeführt
+    } else if (!this.game.takeCardAnimation) {
       this.game.currentCard = this.game.stack.pop()!;
       this.game.takeCardAnimation = true;
 
