@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 import { GameInfoComponent } from '../game-info/game-info.component';
 import { Firestore, collection, doc, collectionData, docData, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -45,6 +46,7 @@ export class GameComponent implements OnInit {
         this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
+        this.game. player_images = game.player_images;
         this.game.stack = game.stack;
         this.game.takeCardAnimation = game.takeCardAnimation;
         this.game.currentCard = game.currentCard;
@@ -107,13 +109,38 @@ export class GameComponent implements OnInit {
     }
   } */
 
+    editPlayer(playerId: number){
+      console.log("edit player", playerId)
+
+      const dialogRef = this.dialog.open(EditPlayerComponent);
+
+      dialogRef.afterClosed().subscribe((change: string) => {
+        if (change){
+          if(change == 'DELETE'){
+            this.game.player_images.splice(playerId, 1);
+            this.game.players.splice(playerId, 1);
+          } else {
+            console.log('received change', change);
+            this.game.player_images[playerId]= change;
+          
+          }
+          this.saveGames();
+        }
+       
+      });
+      
+    }
+
+
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
-        this.saveGames(); // Speichern des Spiels nach dem Hinzufügen eines Spielers
+        this.game.player_images.push('fawkes.png');
+        this.saveGames(); 
       }
     });
   }

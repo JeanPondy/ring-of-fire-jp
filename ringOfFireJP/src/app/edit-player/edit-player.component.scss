@@ -1,0 +1,33 @@
+
+.profile-pictures-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    height: 80px;
+    padding: 16px 8px;
+  
+}
+
+
+.profile-picture {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+        filter: brightness(1.15);
+        transform: scale(1.1);
+    }
+}
+button {
+    margin-right: 16px;
+}
+
+.red {
+    color: red;
+
+   
+}
