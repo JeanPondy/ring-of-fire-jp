@@ -127,3 +127,10 @@ app-player, app-player-mobile {
         }
     }
 }
+
+.preloadImage {
+    opacity: 0;
+    height: 0px;
+    width: 0px;
+    z-index: -9999999;
+}

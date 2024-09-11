@@ -29,5 +29,15 @@ button {
 .red {
     color: red;
 
-   
+}
+
+.edit-delete{
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 430px){
+      h1{
+        display: none;
+      }
+    }
 }

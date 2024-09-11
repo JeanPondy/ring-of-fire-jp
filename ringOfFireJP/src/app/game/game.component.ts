@@ -75,6 +75,7 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
 
+     
       this.saveGames();
 
       // Die Animation nach 1000 ms wiederholen
@@ -89,28 +90,6 @@ export class GameComponent implements OnInit {
 
 
 
-/*   takeCard() {
-    // Nur wenn takeCardAnimation false ist, wird alles ausgeführt
-    if (!this.takeCardAnimation) {
-      this.currentCard = this.game.stack.pop()!;
-      this.takeCardAnimation = true;
-
-      console.log('New card: ' + this.currentCard);
-      console.log('Game is', this.game);
-      
-
-      // Nächsten Spieler auswählen dank Modulo
-      this.game.currentPlayer++;
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-
-      // Die Animation nach 1000 ms wiederholen
-      setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
-        this.takeCardAnimation = false;
-        this.saveGames(); // Speichern des Spiels nach der Aktion
-      }, 1000);
-    }
-  } */
 
     editPlayer(playerId: number){
       console.log("edit player", playerId)
