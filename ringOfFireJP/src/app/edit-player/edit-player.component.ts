@@ -14,7 +14,7 @@ import { MatDialogModule, MatDialogRef, } from '@angular/material/dialog';
 })
 export class EditPlayerComponent {
 
-  allProfilePictures = [ 'aki.png','anonymous.png', 'fawkes.png', 'girl.png', 'lion.png', 'monkey-soldier.png', 'pokerface.png', 'vendetta.png', 'pavel.jpeg',  'akiba.jpeg', 'captain.jpeg']
+  allProfilePictures = [ 'aki.png','anonymous.png', 'fawkes.png', 'girl.png', 'lion.png', 'monkey-soldier.png', 'pokerface.png', 'vendetta.png', 'pavel.jpeg', 'akiba.jpeg', 'captain.jpeg', 'peppa.jpeg', 'woman.png']
 
   constructor(public dialogRef:  MatDialogRef<EditPlayerComponent >){}
 
